@@ -19,7 +19,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-input {
+.input {
   font-size: 16px;
   border: 1px solid #f6a1e2;
   border-radius: 5px 0 0 5px;
@@ -52,13 +52,19 @@ button {
   width: 570px;
 }
 
-.task {
+.taskBox {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   padding-bottom: 3px;
   border-bottom: 1px solid #f38cdb;
+}
+
+.task {
+  width: 500px;
+  overflow: hidden;
+  max-height: auto;
 }
 
 .line {
