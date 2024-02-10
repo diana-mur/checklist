@@ -13,15 +13,17 @@ function App() {
   }, [])
 
   const setList = (task) => {
-    setArray([...array, { task: task, complite: false }])
-    localStorage.setItem('list', JSON.stringify([...array, { task: task, complite: false }]))
+    if (task) {
+      setArray([...array, { task: task, complite: false }])
+      localStorage.setItem('list', JSON.stringify([...array, { task: task, complite: false }]))
+    }
   }
 
   const updateList = (index, value) => {
     const updateArray = array.map((item, i) =>
       i == index ? { ...item, task: value } : item
     )
-    setArray(updateArray)
+    setArray(updateArray);
     localStorage.setItem('list', JSON.stringify(updateArray))
   }
 
@@ -48,7 +50,6 @@ function App() {
         <input
           type="text"
           placeholder='Введите задачу'
-          className='input'
           value={task}
           onChange={(a) => setTask(a.target.value)} />
         <button
@@ -62,14 +63,16 @@ function App() {
         {
           array.map((e, index) => (
             <div className="taskBox" key={index}>
-              <input className={"task " + (e.complite ? "line" : "text")} value={e.task} onChange={(a) => updateList(index, a.target.value)} />
+              <input className={"task " + (e.complite ? "line" : "text")}
+                onChange={(a) => updateList(index, a.target.value)}
+                value={e.task} />
               <div className="btns">
                 <button
                   onClick={() => complite(index)}
-                  className='btn'>v</button>
+                  className='btnDone'>выполнено</button>
                 <button
                   onClick={() => deleteTask(index)}
-                  className='btn'>x</button>
+                  className='btnDelete'>удалить</button>
               </div>
             </div>
           ))
